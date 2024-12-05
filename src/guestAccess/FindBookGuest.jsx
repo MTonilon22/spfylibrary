@@ -19,7 +19,7 @@ const FindBook = () => {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/library/getBook/allBook"
+          "https://unique-healing-production.up.railway.app/api/library/getBook/allBook"
         );
         setBooks(response.data);
       } catch (error) {
@@ -47,28 +47,28 @@ const FindBook = () => {
       let response;
       if (searchType === "title") {
         response = await axios.get(
-          `http://localhost:8080/api/library/getBook/title/${searchQuery}`
+          `https://unique-healing-production.up.railway.app/api/library/getBook/title/${searchQuery}`
         );
       } else if (searchType === "author") {
         response = await axios.get(
-          `http://localhost:8080/api/library/getBook/author/${searchQuery}`
+          `https://unique-healing-production.up.railway.app/api/library/getBook/author/${searchQuery}`
         );
       } else if (searchType === "isbn") {
         response = await axios.get(
-          `http://localhost:8080/api/library/getBook/isbn/${searchQuery}`
+          `https://unique-healing-production.up.railway.app/api/library/getBook/isbn/${searchQuery}`
         );
       }
 
       if (response.data.length > 0) {
         setFoundBooks(response.data);
-        setModalMessage(`${response.data.length} Books found successfully!`);
+        setModalMessage(`${response.data.length} Book/s found successfully!`);
       } else {
         setFoundBooks([]);
-        setModalMessage("No books found!");
+        setModalMessage("No book/s found!");
       }
     } catch (error) {
       setFoundBooks([]);
-      setModalMessage("Error searching books!");
+      setModalMessage("Error searching book/s!");
     }
     setShowModal(true);
   };

@@ -34,7 +34,7 @@ const HomePageAdmin = () => {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/library/getBook/allBook"
+          "https://unique-healing-production.up.railway.app/api/library/getBook/allBook"
         );
         setBooks(response.data);
       } catch (error) {
@@ -73,7 +73,7 @@ const HomePageAdmin = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/library/addBook",
+        "https://unique-healing-production.up.railway.app/api/library/addBook",
         newBook
       );
       setBooks((prevBooks) => [...prevBooks, response.data]);
@@ -141,7 +141,7 @@ const HomePageAdmin = () => {
     }
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/library/updateBook/${id}`,
+        `https://unique-healing-production.up.railway.app/api/library/updateBook/${id}`,
         editingBook
       );
       setBooks((prevBooks) =>
@@ -166,7 +166,9 @@ const HomePageAdmin = () => {
   // Handle delete button click
   const handleDeleteClick = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/library/deleteBook/${id}`);
+      await axios.delete(
+        `https://unique-healing-production.up.railway.app/api/library/deleteBook/${id}`
+      );
       setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
       setModalMessage("Book deleted successfully");
       setShowModal(true);
