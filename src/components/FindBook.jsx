@@ -177,7 +177,7 @@ const FindBook = () => {
           <div>
             <Link
               to="/homePageAdmin"
-              className="px-4 ml-[-590%] py-2 mx-1 hover:text-primary font-semibold rounded-md bg-white hover:bg-ternary text-primary ease-in-out duration-300"
+              className="px-4 lg:ml-[-340%] py-2 mx-1 hover:text-primary font-semibold rounded-md bg-white hover:bg-ternary text-primary ease-in-out duration-300"
             >
               Go Back
             </Link>

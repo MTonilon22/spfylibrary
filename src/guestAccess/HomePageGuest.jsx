@@ -6,8 +6,8 @@ const HomePageGuest = () => {
   return (
     <div>
       <nav className="bg-gray-800 p-2">
-        <div className="container mx-auto flex flex-wrap items-center justify-between">
-          <a href="/" className="text-white text-lg font-semibold">
+        <div className="container mx-auto flex flex-wrap items-center justify-center">
+          <a href="/" className=" text-white text-lg font-semibold">
             Exit Library
           </a>
 

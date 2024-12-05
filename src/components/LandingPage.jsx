@@ -30,7 +30,7 @@ const LandingPage = () => {
       className="flex items-center justify-center h-screen bg-cover bg-center"
       style={{ backgroundImage: `url(${Books})` }}
     >
-      <div className="bg-white  p-8 rounded-lg shadow-lg w-full max-w-md h-[36%] ">
+      <div className="bg-white  p-8 rounded-lg shadow-lg w-full max-w-md h-[36%]  md:h-[52%]">
         <h1 className="text-xl font-bold mb-4 text-primary">
           Welcome to <span className="text-ternary">SPFY Library!</span>
         </h1>

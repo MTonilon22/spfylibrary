@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const HeaderAdmin = () => {
   return (
     <nav className="bg-gray-800 p-2">
-      <div className="container mx-auto flex flex-wrap items-center justify-between">
-        <a href="/" className="text-white text-lg font-semibold">
+      <div className="container mx-auto flex flex-wrap items-center justify-center gap-10">
+        <a href="/" className="text-white text-lg">
           Logout
         </a>
 
