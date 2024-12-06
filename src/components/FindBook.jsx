@@ -177,7 +177,7 @@ const FindBook = () => {
           <div>
             <Link
               to="/homePageAdmin"
-              className="px-4 lg:ml-[-340%] py-2 mx-1 hover:text-primary font-semibold rounded-md bg-white hover:bg-ternary text-primary ease-in-out duration-300"
+              className="px-4 ml-[-590%] py-2 mx-1 hover:text-primary font-semibold rounded-md bg-white hover:bg-ternary text-primary ease-in-out duration-300"
             >
               Go Back
             </Link>
@@ -228,7 +228,10 @@ const FindBook = () => {
               Publisher
             </th>
             <th className="px-6 py-3 text-left text-base font-bold text-primary uppercase tracking-wider">
-              Location
+              Publication Place
+            </th>
+            <th className="px-6 py-3 text-left text-base font-bold text-primary uppercase tracking-wider">
+              Shelf Section
             </th>
           </tr>
         </thead>
@@ -259,6 +262,9 @@ const FindBook = () => {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">
                 {book.bookPublicationPlace}
               </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">
+                {book.bookShelfSection}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -287,7 +293,11 @@ const FindBook = () => {
                   <strong>Publisher:</strong> {book.bookPublisher}
                 </p>
                 <p>
-                  <strong>Location:</strong> {book.bookPublicationPlace}
+                  <strong>Publication Place:</strong>{" "}
+                  {book.bookPublicationPlace}
+                </p>
+                <p>
+                  <strong>Shelf Section:</strong> {book.bookShelfSection}
                 </p>
               </div>
             ))}

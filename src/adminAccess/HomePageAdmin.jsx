@@ -9,6 +9,8 @@ const HomePageAdmin = () => {
   const itemsPerPage = 10;
   const [modalMessage, setModalMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [bookToDelete, setBookToDelete] = useState(null);
 
   const [newBook, setNewBook] = useState({
     bookTitle: "",
@@ -17,6 +19,7 @@ const HomePageAdmin = () => {
     bookYearPublished: "",
     bookISBN: "",
     bookPublicationPlace: "",
+    bookShelfSection: "",
   });
 
   const [editingBookId, setEditingBookId] = useState(null);
@@ -27,6 +30,7 @@ const HomePageAdmin = () => {
     bookYearPublished: "",
     bookISBN: "",
     bookPublicationPlace: "",
+    bookShelfSection: "",
   });
 
   // Fetch books from the backend API
@@ -84,6 +88,7 @@ const HomePageAdmin = () => {
         bookYearPublished: "",
         bookISBN: "",
         bookPublicationPlace: "",
+        bookShelfSection: "",
       });
       setModalMessage("Book added successfully");
       setShowModal(true);
@@ -126,6 +131,7 @@ const HomePageAdmin = () => {
       bookYearPublished: "",
       bookISBN: "",
       bookPublicationPlace: "",
+      bookShelfSection: "",
     });
   };
 
@@ -155,6 +161,7 @@ const HomePageAdmin = () => {
         bookYearPublished: "",
         bookISBN: "",
         bookPublicationPlace: "",
+        bookShelfSection: "",
       });
       setModalMessage("Book updated successfully");
       setShowModal(true);
@@ -164,17 +171,45 @@ const HomePageAdmin = () => {
   };
 
   // Handle delete button click
-  const handleDeleteClick = async (id) => {
+  // const handleDeleteClick = async (id) => {
+  //   try {
+  //     await axios.delete(`http://localhost:8080/api/library/deleteBook/${id}`);
+  //     setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+  //     setModalMessage("Book deleted successfully");
+  //     setShowModal(true);
+  //   } catch (error) {
+  //     console.error("Error deleting book:", error);
+  //   }
+  // };
+
+  // Handle delete button click
+  const handleDeleteClick = (book) => {
+    setShowDeleteModal(true);
+    setBookToDelete(book);
+  };
+
+  // Confirm delete
+  const confirmDelete = async () => {
     try {
       await axios.delete(
-        `https://unique-healing-production.up.railway.app/api/library/deleteBook/${id}`
+        `https://unique-healing-production.up.railway.app/api/library/deleteBook/${bookToDelete.id}`
       );
-      setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+      setBooks((prevBooks) =>
+        prevBooks.filter((book) => book.id !== bookToDelete.id)
+      );
       setModalMessage("Book deleted successfully");
       setShowModal(true);
     } catch (error) {
       console.error("Error deleting book:", error);
     }
+    setShowDeleteModal(false);
+    setBookToDelete(null);
+  };
+
+  // Cancel delete
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
+    setBookToDelete(null);
   };
 
   // Calculate the current items to display
@@ -383,6 +418,23 @@ const HomePageAdmin = () => {
                       Publication Place
                     </label>
                   </div>
+                  <div className="relative z-0">
+                    <input
+                      type="text"
+                      id="bookShelfSection"
+                      value={newBook.bookShelfSection}
+                      onChange={handleInputChange}
+                      className="block py-2.5 px-0 w-full text-sm text-primary bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder=" "
+                      required
+                    />
+                    <label
+                      htmlFor="bookShelfSection"
+                      className="absolute text-sm text-primary dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Shelf Section
+                    </label>
+                  </div>
                 </div>
               </div>
               <button
@@ -418,7 +470,10 @@ const HomePageAdmin = () => {
                 Publisher
               </th>
               <th className="px-6 py-3 text-left text-base font-bold text-primary uppercase tracking-wider">
-                Location
+                Publication Place
+              </th>
+              <th className="px-6 py-3 text-left text-base font-bold text-primary uppercase tracking-wider">
+                Shelf Section
               </th>
               <th className="px-6 py-3 text-left text-base font-bold text-primary uppercase tracking-wider">
                 Actions
@@ -497,6 +552,16 @@ const HomePageAdmin = () => {
                       />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">
+                      <input
+                        type="text"
+                        id="bookShelfSection"
+                        value={editingBook.bookShelfSection}
+                        onChange={handleEditInputChange}
+                        className="block py-2.5 px-0 w-full text-sm text-primary bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder="Shelf Section"
+                      />
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">
                       <button
                         onClick={() => handleUpdateClick(book.id)}
                         className="text-blue-600 hover:text-blue-900"
@@ -532,6 +597,9 @@ const HomePageAdmin = () => {
                       {book.bookPublicationPlace}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">
+                      {book.bookShelfSection}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">
                       <button
                         onClick={() => handleEditClick(book)}
                         className="text-blue-600 hover:text-blue-900"
@@ -539,7 +607,7 @@ const HomePageAdmin = () => {
                         Update
                       </button>
                       <span
-                        onClick={() => handleDeleteClick(book.id)}
+                        onClick={() => handleDeleteClick(book)}
                         className="ml-2 text-red-600 hover:text-red-900 cursor-pointer"
                       >
                         Delete
@@ -550,6 +618,28 @@ const HomePageAdmin = () => {
               </tr>
             ))}
           </tbody>
+
+          {showDeleteModal && (
+            <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+              <div className="bg-white p-4 rounded shadow-lg">
+                <p>Are you sure you want to delete this row?</p>
+                <div className="flex justify-center mt-4 gap-5">
+                  <button
+                    onClick={confirmDelete}
+                    className="px-4 py-2 bg-red-600 text-white rounded mr-2 "
+                  >
+                    Yes
+                  </button>
+                  <button
+                    onClick={cancelDelete}
+                    className="px-4 py-2 bg-gray-300 text-black rounded"
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </table>
         {renderPaginationButtons()}
         {/* <div className="flex justify-center mt-4">

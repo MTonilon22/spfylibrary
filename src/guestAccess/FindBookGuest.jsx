@@ -19,7 +19,7 @@ const FindBook = () => {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          "https://unique-healing-production.up.railway.app/api/library/getBook/allBook"
+          "http://localhost:8080/api/library/getBook/allBook"
         );
         setBooks(response.data);
       } catch (error) {
@@ -47,15 +47,15 @@ const FindBook = () => {
       let response;
       if (searchType === "title") {
         response = await axios.get(
-          `https://unique-healing-production.up.railway.app/api/library/getBook/title/${searchQuery}`
+          `http://localhost:8080/api/library/getBook/title/${searchQuery}`
         );
       } else if (searchType === "author") {
         response = await axios.get(
-          `https://unique-healing-production.up.railway.app/api/library/getBook/author/${searchQuery}`
+          `http://localhost:8080/api/library/getBook/author/${searchQuery}`
         );
       } else if (searchType === "isbn") {
         response = await axios.get(
-          `https://unique-healing-production.up.railway.app/api/library/getBook/isbn/${searchQuery}`
+          `http://localhost:8080/api/library/getBook/isbn/${searchQuery}`
         );
       }
 
@@ -220,7 +220,10 @@ const FindBook = () => {
               Publisher
             </th>
             <th className="px-6 py-3 text-left text-base font-bold text-primary uppercase tracking-wider">
-              Location
+              Publication Place
+            </th>
+            <th className="px-6 py-3 text-left text-base font-bold text-primary uppercase tracking-wider">
+              Shelf Section
             </th>
           </tr>
         </thead>
@@ -251,6 +254,9 @@ const FindBook = () => {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">
                 {book.bookPublicationPlace}
               </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">
+                {book.bookShelfSection}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -279,7 +285,11 @@ const FindBook = () => {
                   <strong>Publisher:</strong> {book.bookPublisher}
                 </p>
                 <p>
-                  <strong>Location:</strong> {book.bookPublicationPlace}
+                  <strong>Publication Place:</strong>{" "}
+                  {book.bookPublicationPlace}
+                </p>
+                <p>
+                  <strong>Shelf Section:</strong> {book.bookShelfSection}
                 </p>
               </div>
             ))}
