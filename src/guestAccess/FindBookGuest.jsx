@@ -19,7 +19,7 @@ const FindBook = () => {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/library/getBook/allBook"
+          "https://unique-healing-production.up.railway.app/api/library/getBook/allBook"
         );
         setBooks(response.data);
       } catch (error) {
@@ -47,15 +47,15 @@ const FindBook = () => {
       let response;
       if (searchType === "title") {
         response = await axios.get(
-          `http://localhost:8080/api/library/getBook/title/${searchQuery}`
+          `https://unique-healing-production.up.railway.app/api/library/getBook/title/${searchQuery}`
         );
       } else if (searchType === "author") {
         response = await axios.get(
-          `http://localhost:8080/api/library/getBook/author/${searchQuery}`
+          `https://unique-healing-production.up.railway.app/api/library/getBook/author/${searchQuery}`
         );
       } else if (searchType === "isbn") {
         response = await axios.get(
-          `http://localhost:8080/api/library/getBook/isbn/${searchQuery}`
+          `https://unique-healing-production.up.railway.app/api/library/getBook/isbn/${searchQuery}`
         );
       }
 
@@ -68,7 +68,7 @@ const FindBook = () => {
       }
     } catch (error) {
       setFoundBooks([]);
-      setModalMessage("Error searching book/s!");
+      setModalMessage("Error searching books!");
     }
     setShowModal(true);
   };
@@ -174,6 +174,14 @@ const FindBook = () => {
     <div>
       <form onSubmit={handleSearchSubmit} className="mb-4">
         <div className="flex items-center justify-center  mt-[3%] ">
+          <div className="">
+            <Link
+              to="/homePageAdmin"
+              className="px-4 md:ml-[-330%] ml-[-590%] py-2 mx-2  hover:text-primary font-semibold rounded-md bg-white hover:bg-ternary text-primary ease-in-out duration-300"
+            >
+              Go Back
+            </Link>
+          </div>
           <select
             value={searchType}
             onChange={handleSearchTypeChange}

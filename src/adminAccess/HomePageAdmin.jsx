@@ -171,18 +171,6 @@ const HomePageAdmin = () => {
   };
 
   // Handle delete button click
-  // const handleDeleteClick = async (id) => {
-  //   try {
-  //     await axios.delete(`http://localhost:8080/api/library/deleteBook/${id}`);
-  //     setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
-  //     setModalMessage("Book deleted successfully");
-  //     setShowModal(true);
-  //   } catch (error) {
-  //     console.error("Error deleting book:", error);
-  //   }
-  // };
-
-  // Handle delete button click
   const handleDeleteClick = (book) => {
     setShowDeleteModal(true);
     setBookToDelete(book);
