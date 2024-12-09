@@ -174,10 +174,10 @@ const FindBook = () => {
     <div>
       <form onSubmit={handleSearchSubmit} className="mb-4">
         <div className="flex items-center justify-center  mt-[3%] ">
-          <div>
+          <div className="">
             <Link
               to="/homePageAdmin"
-              className="px-4 ml-[-590%] py-2 mx-1 hover:text-primary font-semibold rounded-md bg-white hover:bg-ternary text-primary ease-in-out duration-300"
+              className="px-4 md:ml-[-330%] ml-[-590%] py-2 mx-2  hover:text-primary font-semibold rounded-md bg-white hover:bg-ternary text-primary ease-in-out duration-300"
             >
               Go Back
             </Link>
@@ -200,7 +200,7 @@ const FindBook = () => {
           />
           <button
             type="submit"
-            className="ml-2 p-2 bg-ternary text-primary font-medium hover:text-white  ease-in-out duration-300 rounded"
+            className="ml-2 p-2 bg-ternary text-primary font-medium hover:text-white  ease-in-out duration-300 rounded-md"
           >
             Search
           </button>

@@ -192,7 +192,7 @@ const FindBook = () => {
           />
           <button
             type="submit"
-            className="ml-2 p-2 bg-ternary text-primary font-medium hover:text-white  ease-in-out duration-300 rounded"
+            className="ml-2 p-2 bg-ternary text-primary font-medium hover:text-white  ease-in-out duration-300 rounded-md"
           >
             Search
           </button>
