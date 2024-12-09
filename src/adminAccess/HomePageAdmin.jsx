@@ -296,7 +296,7 @@ const HomePageAdmin = () => {
         <HeaderAdmin />
       </div>
       <div className="w-[95%] flex items-center justify-center mt-[2%] rounded-lg mx-auto ">
-        <div className="border-2   flex flex-row w-[100%] mx-auto items-center justify-center gap-10 rounded-lg bg-primary">
+        <div className="border-2   flex flex-row w-[100%]  mx-auto items-center justify-center gap-10 rounded-lg bg-primary">
           <div>
             <img
               src={Library}
